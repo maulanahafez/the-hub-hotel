@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('room_types', function (Blueprint $table) {
             $table->id();
             $table->string('type');
+            $table->string('slug')->unique();
             $table->text('desc');
             $table->unsignedInteger('size');
             $table->unsignedSmallInteger('capacity');
