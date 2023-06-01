@@ -18,6 +18,7 @@ class RoomTypeFactory extends Factory
     {
         return [
             'type'=>$this->type(),
+            'slug'=>fake()->bothify('????-????'), 
             'desc'=>fake()->paragraph(rand(6,10)),
             'size'=>fake()->numberBetween(100, 300),
             'capacity'=>fake()->numberBetween(2,8),

@@ -40,11 +40,11 @@
         <div class="mx-1 flex items-center justify-between">
           <div class="font-poppins text-xl"
             :class="scrolled ? 'text-sky-950' : 'text-white'">
-            <img src="./assets/logo-white.svg"
+            <img src="{{ asset('images/logo/logo-white.svg') }}"
               alt=""
               class="w-20"
               :class="scrolled ? 'hidden' : null" />
-            <img src="./assets/logo.svg"
+            <img src="{{ asset('images/logo/logo.svg') }}"
               alt=""
               class="w-20"
               :class="!scrolled ? 'hidden' : null" />
@@ -52,7 +52,7 @@
           <div class="text-md hidden items-center gap-x-12 lg:flex"
             :class="scrolled ? 'text-sky-950' : 'text-white'">
             <div>
-              <a href="/"
+              <a href="{{ route('home.room-type') }}"
                 class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
                 <i class="fa-solid fa-bed"></i>
                 <span>Rooms</span>
@@ -110,7 +110,7 @@
             x-transition:leave-end="opacity-0 -translate-x-full">
             <div class="flex h-full flex-col gap-y-2 px-6 py-4 text-sm">
               <div>
-                <a href="/"
+                <a href="{{ route('home.room-type') }}"
                   class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
                   <div class="flex h-8 w-8">
                     <i class="fa-solid fa-bed m-auto text-lg"></i>
@@ -159,7 +159,8 @@
   </nav>
 
   <!-- Header -->
-  <header class="bg-[url('../../assets/i_am_meer_junaid--3ohj90OT8o-unsplash.jpg')] bg-cover bg-top bg-no-repeat">
+  <header class="bg-cover bg-top bg-no-repeat"
+    style="background-image: url('{{ asset('images/hotel-1.jpg') }}')">
     <div class="bg-black/60">
       <div class="mx-auto max-w-6xl px-6 pb-24 pt-32">
         <div class="container relative z-10 mx-auto">
@@ -271,18 +272,18 @@
       <div class="mt-8">
         <div class="grid grid-cols-2 items-center gap-x-4">
           <div class="h-80">
-            <img src="./assets/paul-szewczyk-nI4aC1kaTRc-unsplash.jpg"
+            <img src="{{ asset('/images/hotel-2.jpg') }}"
               alt=""
               class="h-full w-full rounded-lg object-cover" />
           </div>
           <div class="flex h-80 flex-col gap-y-4">
             <div class="">
-              <img src="./assets/i_am_meer_junaid--3ohj90OT8o-unsplash.jpg"
+              <img src="{{ asset('/images/hotel-3.jpg') }}"
                 alt=""
                 class="h-[9.5rem] w-full rounded-lg object-cover" />
             </div>
             <div>
-              <img src="./assets/sasha-kaunas-TAgGZWz6Qg8-unsplash.jpg"
+              <img src="{{ asset('/images/hotel-4.jpg') }}"
                 alt=""
                 class="h-[9.5rem] w-full rounded-lg object-cover" />
             </div>
@@ -428,7 +429,7 @@
       <div class="mt-8 items-center gap-x-12 md:grid md:grid-cols-2"
         x-data="{ show: 1 }">
         <div class="shrink-0">
-          <img src="./assets/paul-szewczyk-nI4aC1kaTRc-unsplash.jpg"
+          <img src="{{ asset('/images/hotel-5.jpg') }}"
             alt=""
             class="mx-auto aspect-square h-80 w-full rounded-xl object-cover" />
         </div>
@@ -657,9 +658,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Responsive Helper -->
-  <div class="fixed bottom-20 right-0 h-12 w-12 bg-blue-200 sm:bg-red-200 md:bg-green-200 lg:bg-yellow-200"></div>
 </body>
 
 </html>
