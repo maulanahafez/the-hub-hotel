@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         if ($user) {
             session()->flash('success', 'User created successfully');
-            return redirect('/');
+            return redirect('/login');
         } else {
             return redirect()->route('signup');
         }
@@ -55,10 +55,14 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
-            $request->session()->regenerate();
-            session()->flash('successLogin', "Successfully logged in");
+            if ($user->role === 'admin') {
+                $request->session()->regenerate();
+                session()->flash('successLogin', "Successfully logged in");
 
+                return redirect()->intended('/dashboard');
+            }
             return redirect()->intended('/');
         }
 
