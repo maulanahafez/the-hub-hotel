@@ -19,17 +19,23 @@ Route::get('/', function () {
     return view('landing-page');
 });
 
-Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
-Route::post('/signup', [AuthController::class, 'store']);
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authentication']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
+    Route::post('/signup', [AuthController::class, 'store']);
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authentication']);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::prefix('/profile')->group(function () {
+        Route::get('/', [AuthController::class, 'profile'])->name('profile');
+        Route::get('/edit', [AuthController::class, 'edit'])->name('edit');
+    });
+});
 
 Route::get('/rooms', [RoomTypeController::class, 'home'])->name('home.room-type');
 Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'details'])->name('home.room-type.details');
 
 // Dashboard
-Route::prefix('dashboard')->group(function () {
+Route::prefix('/dashboard')->group(function () {
 
     // Room Type
     Route::prefix('/room-type')->group(function () {

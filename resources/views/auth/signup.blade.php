@@ -39,7 +39,7 @@
                 </div>
 
                 {{-- Form Signup --}}
-                <form method="POST" action="/signup" class="mt-6">
+                <form method="POST" action="{{ route('signup') }}" class="mt-6">
                     @csrf
                     <div>
                         <input type="text" name="name" id="name" placeholder="Full Name" autofocus
@@ -90,7 +90,7 @@
                     </div>
                     <div class="mt-4 text-sm text-black/60">
                         Already have an account?
-                        <a href="/login" class="text-sky-500 transition hover:text-sky-950">Log In</a>
+                        <a href="{{ route('login') }}" class="text-sky-500 transition hover:text-sky-950">Log In</a>
                     </div>
                 </form>
             </div>
