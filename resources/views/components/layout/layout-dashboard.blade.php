@@ -64,8 +64,10 @@
                 <i class="fa-solid fa-user m-auto text-black/60"></i>
               </span>
               <div class="text-[12px]">
-                <p>Maulana Hafez AT</p>
-                <p class="text-black/60">maulanahafez@gmail.com</p>
+                @auth
+                <p>{{ Auth::user()->name }}</p>
+                <p class="text-black/60">{{ Auth::user()->email }}</p>
+                @endauth
               </div>
             </div>
           </div>
@@ -81,7 +83,7 @@
             x-transition:leave-end="opacity-0 -translate-x-20">
             <div>
               <div class="mt-4">
-                <a href="/">
+                <a href="{{ route('landing-page') }}">
                   <img src="{{ asset('images/logo/logo.svg') }}"
                     alt=""
                     class="mx-auto w-16" />
@@ -98,7 +100,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('user.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-user m-auto text-lg"></i>
@@ -167,7 +169,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('user.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-user m-auto text-lg"></i>
@@ -185,7 +187,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href=""
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-bed m-auto text-lg"></i>
