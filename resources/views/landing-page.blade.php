@@ -58,14 +58,17 @@
                                 <span>Reservations</span>
                             </a>
                         </div>
-                        @if (Auth::check())
-                            <div>
-                                <a href="{{ route('logout') }}"
-                                    class="hover:bg-red-950 rounded-lg bg-red-500 px-6 py-2 text-sm font-bold text-white transition"
+                        @auth
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <div>
+                                    <button type="submit"
+                                    class="btn hover:bg-red-950 rounded-lg bg-red-500 px-6 py-2 text-sm font-bold text-white transition"
                                     onclick="return confirm('Do you want to logout')">
-                                    <span>Logout</span>
-                                </a>
-                            </div>
+                                        <span>Logout</span>
+                                    </button>
+                                </div>
+                            </form>
                         @else
                             <div>
                                 <a href="{{ route('login') }}"
@@ -73,8 +76,7 @@
                                     <span>Login</span>
                                 </a>
                             </div>
-                        @endif
-
+                        @endauth
                     </div>
 
                     <!-- Toggler -->

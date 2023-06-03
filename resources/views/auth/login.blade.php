@@ -35,7 +35,7 @@
                         Fill the information below to Log In
                     </p>
                     @if (session()->has('loginError'))
-                        <div class="mt-4 text-lg text-red-600">
+                        <div class="mt-4 text-sm text-red-600">
                             {{ session('loginError') }}
                         </div>
                     @endif
