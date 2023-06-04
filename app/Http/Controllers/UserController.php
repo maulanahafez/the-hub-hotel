@@ -95,8 +95,7 @@ class UserController extends Controller
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|same:password',
         ];
-
-
+        
         $validated = $request->validate($rules);
 
         $dataToUpdate = [
@@ -104,11 +103,7 @@ class UserController extends Controller
             'password' => bcrypt($validated['password']),
         ];
 
-        if (isset($validated['email'])) {
-            $dataToUpdate['email'] = $validated['email'];
-        }
-
-        User::where('id', $user->id)->update($dataToUpdate);
+        $user->update($dataToUpdate);
 
         return redirect()->route('home.userProfile', ['user' => $user->id]);
     }
