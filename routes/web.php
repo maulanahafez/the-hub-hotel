@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomTypeController;
 
@@ -33,6 +34,9 @@ Route::controller(AuthController::class)->group(function () {
 Route::get('/profile/{user:id}', [UserController::class, 'userProfile'])->name('home.userProfile')->middleware('auth');
 Route::post('/profile/{user:id}/update', [UserController::class, 'userProfile'])->name('home.userProfile.edit')->middleware('auth');
 
+// Reservations
+Route::get('/reservation', [ReservationController::class, 'reservation'])->name('home.reservation');
+
 // Rooms
 Route::get('/rooms', [RoomTypeController::class, 'home'])->name('home.room-type');
 Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'details'])->name('home.room-type.details');
@@ -55,5 +59,14 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/store', [RoomTypeController::class, 'store'])->name('room-type.store');
         Route::get('/{roomType:slug}', [RoomTypeController::class, 'show'])->name('room-type.show');
         Route::post('/{roomType:slug}/update', [RoomTypeController::class, 'update'])->name('room-type.update');
+    });
+
+    // Reservation
+    Route::prefix('/reservation')->group(function () {
+        Route::get('/', [ReservationController::class, 'index'])->name('reservation.index');
+        Route::get('/create', [ReservationController::class, 'create'])->name('reservation.create');
+        Route::post('/store', [ReservationController::class, 'store'])->name('reservation.store');
+        Route::get('/{reservation:slug}', [ReservationController::class, 'show'])->name('reservation.show');
+        Route::post('/{reservation:slug}/update', [ReservationController::class, 'update'])->name('reservation.update');
     });
 });

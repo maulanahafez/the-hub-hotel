@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('room_id');
             $table->foreignId('user_id');
+            $table->string('slug')->unique();
             $table->date('date_in');
             $table->date('date_out');
             $table->string('status');
