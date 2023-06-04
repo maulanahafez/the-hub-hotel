@@ -69,6 +69,10 @@ class AuthController extends Controller
         return back()->with('loginError', 'Email or password incorrect');
     }
 
+    public function dashboard(){
+        return view('dashboard.index');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

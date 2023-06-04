@@ -65,8 +65,8 @@
               </span>
               <div class="text-[12px]">
                 @auth
-                <p>{{ Auth::user()->name }}</p>
-                <p class="text-black/60">{{ Auth::user()->email }}</p>
+                  <p>{{ Auth::user()->name }}</p>
+                  <p class="text-black/60">{{ Auth::user()->email }}</p>
                 @endauth
               </div>
             </div>
@@ -92,7 +92,7 @@
               <div class="mt-4 px-2">
                 <div>
                   <a href="/"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm bg-sky-500 px-4 py-2 text-white transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-house m-auto text-lg"></i>
                     </span>
@@ -101,7 +101,8 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('user.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('user') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-user m-auto text-lg"></i>
                     </span>
@@ -109,8 +110,9 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                  <a href="{{ route('room-type.index') }}"
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('room-type') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-restroom m-auto text-lg"></i>
                     </span>
@@ -160,8 +162,8 @@
               </div>
               <div class="mt-4 px-2">
                 <div>
-                  <a href="/"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm bg-sky-500 px-4 py-2 text-white transition hover:text-white">
+                  <a href="{{ route('dashboard') }}"
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-house m-auto text-lg"></i>
                     </span>
@@ -170,7 +172,8 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('user.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('user') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-user m-auto text-lg"></i>
                     </span>
@@ -178,8 +181,9 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                  <a href="{{ route('room-type.index') }}"
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('room-type') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-restroom m-auto text-lg"></i>
                     </span>

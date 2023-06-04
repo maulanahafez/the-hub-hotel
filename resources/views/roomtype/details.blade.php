@@ -2,35 +2,16 @@
   <section class="mx-auto mb-2 mt-[4rem] max-w-2xl p-4">
     <div class="container relative mx-auto">
       <div class="group relative max-h-80 overflow-hidden rounded-lg"
-        x-data="{ selected: 1, count: 4 }">
-        <img src="{{ asset('images/hotel-2.jpg') }}"
-          alt=""
-          class="w-full object-cover"
-          x-show="selected === 1"
-          x-transition:enter="transition-all duration-500 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100" />
-        <img src="{{ asset('images/hotel-2.jpg') }}"
-          alt=""
-          class="w-full object-cover"
-          x-show="selected === 2"
-          x-transition:enter="transition-all duration-500 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100" />
-        <img src="{{ asset('images/hotel-2.jpg') }}"
-          alt=""
-          class="w-full object-cover"
-          x-show="selected === 3"
-          x-transition:enter="transition-all duration-500 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100" />
-        <img src="{{ asset('images/hotel-2.jpg') }}"
-          alt=""
-          class="w-full object-cover"
-          x-show="selected === 4"
-          x-transition:enter="transition-all duration-500 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100" />
+        x-data="{ selected: 1, count: {{ count($roomType->roomTypeImages) }} }">
+        @foreach ($roomType->roomTypeImages as $image)
+          <img src="{{ asset('storage/' . $image->path) }}"
+            alt=""
+            class="w-full object-cover"
+            x-show="selected === {{ $loop->iteration }}"
+            x-transition:enter="transition-all duration-500 ease-in-out"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" />
+        @endforeach
         <span
           class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer text-4xl text-transparent transition group-hover:text-white"
           x-on:click="selected - 1 === 0 ? selected = count : selected--">

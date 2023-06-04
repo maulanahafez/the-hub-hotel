@@ -36,12 +36,22 @@
     <div class="mx-auto max-w-6xl px-6 py-3">
       <div class="container mx-auto">
         <div class="mx-1 flex items-center justify-between">
-          <div class="">
+          <a class=""
+            href="/">
             <img src="{{ asset('images/logo/logo.svg') }}"
               alt=""
               class="w-14" />
-          </div>
+          </a>
           <div class="text-md hidden items-center gap-x-12 lg:flex">
+            @if (Auth::user()->role === 'admin')
+              <div>
+                <a href="{{ route('dashboard') }}"
+                  class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
+                  <i class="fa-solid fa-chart-simple"></i>
+                  <span>Dashboard</span>
+                </a>
+              </div>
+            @endif
             <div>
               <a href="{{ route('home.room-type') }}"
                 class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
@@ -56,19 +66,40 @@
                 <span>Reviews</span>
               </a>
             </div>
-            <div>
-              <a href="/"
-                class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <span>Reservations</span>
-              </a>
-            </div>
-            <div>
-              <a href="/"
-                class="hover:bg-sky-950 rounded-lg bg-sky-500 px-6 py-2 text-sm font-bold text-white transition">
-                <span>Login</span>
-              </a>
-            </div>
+            @auth
+              <div>
+                <a href="/"
+                  class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                  <span>Reservations</span>
+                </a>
+              </div>
+              <div>
+                <a href="{{ route('home.userProfile', ['user' => Auth::user()->id]) }}"
+                  class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
+                  <i class="fa-solid fa-user"></i>
+                  <span>Profile</span>
+                </a>
+              </div>
+              <form action="{{ route('logout') }}"
+                method="POST">
+                @csrf
+                <div>
+                  <button type="submit"
+                    class="btn hover:bg-red-950 rounded-lg bg-red-500 px-6 py-2 text-sm font-bold text-white transition"
+                    onclick="return confirm('Do you want to logout')">
+                    <span>Logout</span>
+                  </button>
+                </div>
+              </form>
+            @else
+              <div>
+                <a href="/"
+                  class="hover:bg-sky-950 rounded-lg bg-sky-500 px-6 py-2 text-sm font-bold text-white transition">
+                  <span>Login</span>
+                </a>
+              </div>
+            @endauth
           </div>
 
           <!-- Toggler -->
@@ -97,7 +128,18 @@
             x-transition:leave="transition"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0 -translate-x-full">
-            <div class="flex h-full flex-col gap-y-2 px-6 py-4 text-sm">
+            <div class="mt-2 flex h-full flex-col gap-y-2 px-6 py-4 text-sm">
+              @if (Auth::user()->role === 'admin')
+                <div>
+                  <a href="{{ route('dashboard') }}"
+                    class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
+                    <div class="flex h-8 w-8">
+                      <i class="fa-solid fa-chart-simple m-auto text-lg"></i>
+                    </div>
+                    <span>Dashboard</span>
+                  </a>
+                </div>
+              @endif
               <div>
                 <a href="{{ route('home.room-type') }}"
                   class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
@@ -111,35 +153,49 @@
                 <a href="/"
                   class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
                   <div class="flex h-8 w-8">
-                    <i class="fa-solid fa-calendar-days m-auto text-lg"></i>
+                    <i class="fa-solid fa-star m-auto text-lg"></i>
                   </div>
-                  <span>Book</span>
+                  <span>Reviews</span>
                 </a>
               </div>
-              <div>
-                <a href="/"
-                  class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
-                  <div class="flex h-8 w-8">
-                    <i class="fa-solid fa-bell-concierge m-auto text-lg"></i>
-                  </div>
-                  <span>Check In</span>
-                </a>
-              </div>
-              <div>
-                <a href="/"
-                  class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
-                  <div class="flex h-8 w-8">
-                    <i class="fa-solid fa-clock-rotate-left m-auto text-lg"></i>
-                  </div>
-                  <span>Reservations</span>
-                </a>
-              </div>
-              <div class="flex grow">
-                <a href="/"
-                  class="hover:bg-sky-950 mt-auto w-full rounded-lg bg-sky-500 px-6 py-2.5 text-center text-sm font-bold text-white transition">
-                  <span>Login</span>
-                </a>
-              </div>
+              @auth
+                <div>
+                  <a href="/"
+                    class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
+                    <div class="flex h-8 w-8">
+                      <i class="fa-solid fa-clock-rotate-left m-auto text-lg"></i>
+                    </div>
+                    <span>Reservations</span>
+                  </a>
+                </div>
+                <div>
+                  <a href="{{ route('home.userProfile', ['user' => Auth::user()->id]) }}"
+                    class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
+                    <div class="flex h-8 w-8">
+                      <i class="fa-solid fa-user m-auto text-lg"></i>
+                    </div>
+                    <span>Profile</span>
+                  </a>
+                </div>
+              @endauth
+              @auth
+                <form action="{{ route('logout') }}"
+                  method="post"
+                  class="flex grow">
+                  @csrf
+                  <button type="submit"
+                    class="hover:bg-red-950 mt-auto w-full rounded-lg bg-red-500 px-6 py-2.5 text-center text-sm font-bold text-white transition">
+                    Logout
+                  </button>
+                </form>
+              @else
+                <div class="flex grow">
+                  <a href="{{ route('login') }}"
+                    class="hover:bg-sky-950 mt-auto w-full rounded-lg bg-sky-500 px-6 py-2.5 text-center text-sm font-bold text-white transition">
+                    <span>Login</span>
+                  </a>
+                </div>
+              @endauth
             </div>
           </div>
         </div>
@@ -226,9 +282,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Responsive Helper -->
-  <div class="fixed bottom-20 right-0 h-12 w-12 bg-blue-200 sm:bg-red-200 md:bg-green-200 lg:bg-yellow-200"></div>
 </body>
 
 </html>
