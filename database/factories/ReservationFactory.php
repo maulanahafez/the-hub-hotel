@@ -20,7 +20,7 @@ class ReservationFactory extends Factory
         return [
             'date_in' => fake()->date(),
             'date_out' => fake()->date(),
-            'slug' => Str::slug(fake()->sentence(1, 3), '-'),
+            'slug' => Str::slug(fake()->unique()->sentence(1, 3), '-'),
             'status' => $this->status(),
             'range' => fake()->numberBetween(1, 7),
             'total_price' => fake()->numberBetween(300, 1000),

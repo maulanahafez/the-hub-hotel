@@ -39,7 +39,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.reservation.create');
     }
 
     /**
@@ -53,25 +53,36 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Reservation $reservation)
     {
-        //
+
+        $user = $reservation->load('user');
+
+        return view('dashboard.reservation.detail', [
+            'reservation' => $reservation,
+            'user' => $user,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Reservation $reservation)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Reservation $reservation)
     {
-        //
+        $validated = $request->validate([
+            'status' => 'required',
+        ]);
+
+        $reservation->update($validated);
+
+        return redirect()->route('reservation.show', ['reservation' => $reservation->slug]);
     }
 
     /**
