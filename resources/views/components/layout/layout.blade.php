@@ -43,15 +43,17 @@
               class="w-14" />
           </a>
           <div class="text-md hidden items-center gap-x-12 lg:flex">
-            @if (Auth::user()->role === 'admin')
-              <div>
-                <a href="{{ route('dashboard') }}"
-                  class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
-                  <i class="fa-solid fa-chart-simple"></i>
-                  <span>Dashboard</span>
-                </a>
-              </div>
-            @endif
+            @auth
+              @if (Auth::user()->role === 'admin')
+                <div>
+                  <a href="{{ route('dashboard') }}"
+                    class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Dashboard</span>
+                  </a>
+                </div>
+              @endif
+            @endauth
             <div>
               <a href="{{ route('home.room-type') }}"
                 class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
@@ -129,17 +131,19 @@
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0 -translate-x-full">
             <div class="mt-2 flex h-full flex-col gap-y-2 px-6 py-4 text-sm">
-              @if (Auth::user()->role === 'admin')
-                <div>
-                  <a href="{{ route('dashboard') }}"
-                    class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
-                    <div class="flex h-8 w-8">
-                      <i class="fa-solid fa-chart-simple m-auto text-lg"></i>
-                    </div>
-                    <span>Dashboard</span>
-                  </a>
-                </div>
-              @endif
+              @auth
+                @if (Auth::user()->role === 'admin')
+                  <div>
+                    <a href="{{ route('dashboard') }}"
+                      class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
+                      <div class="flex h-8 w-8">
+                        <i class="fa-solid fa-chart-simple m-auto text-lg"></i>
+                      </div>
+                      <span>Dashboard</span>
+                    </a>
+                  </div>
+                @endif
+              @endauth
               <div>
                 <a href="{{ route('home.room-type') }}"
                   class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
