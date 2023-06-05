@@ -15,10 +15,6 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        // $data = [
-        //     'number' => 1,
-        //     'reservations' => Reservation::with('reservation:name', 'room.roomType:type')->latest()->get(),
-        // ];
         $number = 1;
         $reservations = Reservation::all();
 
@@ -39,7 +35,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('dashboard.reservation.create');
+        // return view('dashboard.reservation.create');
     }
 
     /**
@@ -88,8 +84,19 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function reservation()
+    public function reservation(RoomType $roomType, User $user)
     {
-        return view('reservation.index');
+        // $user = $reservation->load('user')->get();
+        // $roomType = $reservation->load('roomType')->get();
+        $data = [
+            'roomType' => $roomType,
+            // 'users' => $user
+        ];
+        // dd($roomType);
+        return view('reservation.index', $data);
+    }
+
+    public function reservationStore(Request $request)
+    {
     }
 }

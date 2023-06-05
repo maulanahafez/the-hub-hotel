@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RoomType extends Model
 {
@@ -13,5 +14,9 @@ class RoomType extends Model
 
     public function rooms(){
         return $this->hasMany(Room::class);
+    }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class);
     }
 }

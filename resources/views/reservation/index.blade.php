@@ -3,7 +3,7 @@
     <section class="mx-auto mb-2 mt-[5rem] max-w-2xl px-6">
         <div class="container mx-auto">
             <div x-data="reservation()">
-                <div class="text-center" x-data="{ price_per_day: 200 }">
+                <div class="text-center" x-data="{ price_per_day: {{ $roomType->price_per_day }} }">
                     <h1 class="font-poppins text-2xl">Reservation</h1>
                     <div class="relative mt-2 flex items-center justify-center gap-x-16">
                         <div
@@ -40,7 +40,7 @@
                             <div class="mt-2 grid grid-cols-1 gap-y-1 sm:grid-cols-3 sm:items-center">
                                 <p class="font-semibold text-black/60">Room Type</p>
                                 <input type="text" name="type" id="type" placeholder="Type"
-                                    value="Deluxe Room" readonly
+                                    value="{{ ucwords($roomType->type) }}" readonly
                                     class="col-span-2 w-full rounded-md border border-black/60 bg-gray-100 px-3 py-1 focus:outline-blue-500" />
                             </div>
                             <div class="grid grid-cols-1 gap-y-1 sm:grid-cols-3 sm:items-center">
@@ -98,7 +98,7 @@
                         </p>
                         <div class="mt-2 grid grid-cols-1 gap-y-1 sm:grid-cols-3 sm:items-center">
                             <p class="font-semibold text-black/60">Name</p>
-                            <input type="text" name="name" id="name" placeholder="Name" value="Maulana Hafez"
+                            <input type="text" name="name" id="name" placeholder="Name" value=""
                                 readonly
                                 class="col-span-2 w-full rounded-md border border-black/60 bg-gray-100 px-3 py-1 focus:outline-blue-500" />
                         </div>
@@ -131,7 +131,7 @@
                                 <div class="mt-2 grid grid-cols-1 gap-y-1 sm:grid-cols-3 sm:items-center">
                                     <p class="font-semibold text-black/60">Room Type</p>
                                     <input type="text" name="type" id="type" placeholder="Type"
-                                        value="Deluxe Room" readonly
+                                        value="{{ $roomType->type }}" readonly
                                         class="col-span-2 w-full rounded-md border border-black/60 bg-gray-100 px-3 py-1 focus:outline-blue-500" />
                                 </div>
                                 <div class="grid grid-cols-1 gap-y-1 sm:grid-cols-3 sm:items-center">
@@ -143,8 +143,8 @@
                                 <div class="grid grid-cols-1 gap-y-1 sm:grid-cols-3 sm:items-center">
                                     <p class="font-semibold text-black/60">Total Price</p>
                                     <input type="text" name="total_price" id="total_price"
-                                        placeholder="Price per Day" :value="price_per_day * form.range"
-                                        x-model="form.total_price" readonly
+                                        placeholder="{{ $roomType->price_per_day }}"
+                                        :value="price_per_day * form.range" x-model="form.total_price" readonly
                                         class="col-span-2 w-full rounded-md border border-black/60 bg-gray-100 px-3 py-1 focus:outline-blue-500" />
                                 </div>
                                 <div class="grid grid-cols-1 gap-y-1 sm:grid-cols-3 sm:items-center">

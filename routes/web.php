@@ -35,7 +35,7 @@ Route::get('/profile/{user:id}', [UserController::class, 'userProfile'])->name('
 Route::post('/profile/{user:id}/update', [UserController::class, 'userProfile'])->name('home.userProfile.edit')->middleware('auth');
 
 // Reservations
-Route::get('/reservation', [ReservationController::class, 'reservation'])->name('home.reservation');
+Route::post('/reservation/{roomType:slug}', [ReservationController::class, 'reservation'])->name('home.reservation');
 
 // Rooms
 Route::get('/rooms', [RoomTypeController::class, 'home'])->name('home.room-type');
