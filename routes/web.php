@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\RoomTypeImageController;
@@ -37,6 +38,9 @@ Route::post('/profile/{user:id}/update', [UserController::class, 'updateUserProf
 // Rooms
 Route::get('/rooms', [RoomTypeController::class, 'home'])->name('home.room-type');
 Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'details'])->name('home.room-type.details');
+
+// Reviews
+Route::get('/reviews', [ReviewController::class, 'home'])->name('home.review');
 
 // Dashboard
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
