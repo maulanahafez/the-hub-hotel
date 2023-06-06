@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\RoomTypeImageController;
@@ -37,6 +38,11 @@ Route::post('/profile/{user:id}/update', [UserController::class, 'updateUserProf
 // Rooms
 Route::get('/rooms', [RoomTypeController::class, 'home'])->name('home.room-type');
 Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'details'])->name('home.room-type.details');
+
+// Reservation
+Route::post('/reservation/{roomType:slug}', [ReservationController::class, 'reservation'])->name('home.reservation')->middleware('auth');
+Route::post('/reservation/{roomType:slug}/store', [ReservationController::class, 'store'])->name('home.reservation.store')->middleware('auth');
+Route::get('/my-reservation', [ReservationController::class, 'home'])->name('home.my-reservation')->middleware('auth');
 
 // Dashboard
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {

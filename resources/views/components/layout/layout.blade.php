@@ -96,7 +96,7 @@
               </form>
             @else
               <div>
-                <a href="/"
+                <a href="{{ route('login') }}"
                   class="hover:bg-sky-950 rounded-lg bg-sky-500 px-6 py-2 text-sm font-bold text-white transition">
                   <span>Login</span>
                 </a>
