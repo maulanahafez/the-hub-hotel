@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\RoomTypeImageController;
@@ -38,6 +39,10 @@ Route::post('/profile/{user:id}/update', [UserController::class, 'updateUserProf
 Route::get('/rooms', [RoomTypeController::class, 'home'])->name('home.room-type');
 Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'details'])->name('home.room-type.details');
 
+// Reviews
+Route::get('/reviews', [ReviewController::class, 'home'])->name('home.review');
+Route::post('/reviews/store',[ReviewController::class, 'store'])->name('home.review.store');
+
 // Dashboard
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AuthController::class, 'dashboard'])->name('dashboard');
@@ -59,5 +64,11 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/store-image', [RoomTypeImageController::class, 'store'])->name('room-type.store-image');
         Route::get('/{roomType:slug}', [RoomTypeController::class, 'show'])->name('room-type.show');
         Route::post('/{roomType:slug}/update', [RoomTypeController::class, 'update'])->name('room-type.update');
+    });
+
+    // Review
+    Route::prefix('/review')->group(function(){
+        Route::get('/',[ReviewController::class,'index'])->name('review.index');
+        
     });
 });
