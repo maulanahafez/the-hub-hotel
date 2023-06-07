@@ -432,10 +432,12 @@
                 alt=""
                 class="m-auto w-56 rounded-sm object-cover">
             @endforeach
-            <i x-on:click="show === max ? show = 1 : show++"
-              class="fa-solid fa-chevron-right absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-black"></i>
-            <i x-on:click="show - 1 === 0 ? show = max : show--"
-              class="fa-solid fa-chevron-left absolute left-2 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-black"></i>
+            @if (count($roomType->roomTypeImages) != 0)
+              <i x-on:click="show === max ? show = 1 : show++"
+                class="fa-solid fa-chevron-right absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-black"></i>
+              <i x-on:click="show - 1 === 0 ? show = max : show--"
+                class="fa-solid fa-chevron-left absolute left-2 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-black"></i>
+            @endif
           </div>
           <div class="mt-4 flex justify-center">
             <span x-on:click="add = true"

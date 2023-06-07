@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|max: 255',
-            'email' => 'required|email:dns',
+            'email' => 'required|email:dns|unique:users,email',
             'password' => 'required|min:6',
             'password_confirmation' => 'required|same:password'
         ]);
@@ -51,13 +51,12 @@ class AuthController extends Controller
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
-
         ];
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if ($user->role === 'admin') {
+            if ($user->role == 'admin') {
                 $request->session()->regenerate();
                 session()->flash('successLogin', "Successfully logged in");
 
@@ -69,9 +68,9 @@ class AuthController extends Controller
         return back()->with('loginError', 'Email or password incorrect');
     }
 
-    public function dashboard(){
-        return view('dashboard.index');
-    }
+    // public function dashboard(){
+    //     return view('dashboard.index');
+    // }
 
     public function logout(Request $request)
     {

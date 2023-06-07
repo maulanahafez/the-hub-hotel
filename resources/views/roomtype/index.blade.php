@@ -18,7 +18,6 @@
       </h2>
       <div class="mt-8 grid grid-cols-1 justify-center gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
         @foreach ($roomTypes as $roomType)
-          {{-- @dump($roomType->roomTypeImages) --}}
           @foreach ($roomType->roomTypeImages as $image)
             @if ($loop->first)
               @php
@@ -29,7 +28,12 @@
           <a href="{{ route('home.room-type.details', ['roomType' => $roomType->slug]) }}"
             class="mx-auto max-w-xs overflow-hidden rounded-lg border border-black/30 shadow-md transition hover:border-sky-500 hover:shadow-xl md:max-w-none">
             <div>
-              <img src="{{ asset('storage/' . $path) }}"
+              <img
+                @isset($path)
+                  src="{{ asset('storage/' . $path) }}"
+                @else
+                  src="/"
+                @endisset
                 alt=""
                 class="" />
             </div>

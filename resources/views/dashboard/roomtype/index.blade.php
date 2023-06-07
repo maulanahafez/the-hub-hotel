@@ -29,8 +29,10 @@
                 <tr class="border-y border-black/20 text-sm">
                   <!-- <td class="px-2">1</td> -->
                   <td class="px-2 capitalize">{{ $roomType->type }}</td>
-                  <td class="max-w-sm px-2 py-3">
-                    {{ $roomType->desc }}
+                  <td class="max-w-sm overflow-hidden px-2 py-3">
+                    <span class="line-clamp-3">
+                      {{ $roomType->desc }}
+                    </span>
                   </td>
                   <td class="px-2">{{ $roomType->size }}</td>
                   <td class="px-2">
