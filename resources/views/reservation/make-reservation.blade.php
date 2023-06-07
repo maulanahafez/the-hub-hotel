@@ -1,6 +1,5 @@
 <x-layout.layout>
   <!-- Reservations -->
-  @dump($roomType, $room)
   <section class="mx-auto mb-2 mt-[5rem] max-w-2xl px-6">
     <div class="container mx-auto">
       <div x-data="reservation()">

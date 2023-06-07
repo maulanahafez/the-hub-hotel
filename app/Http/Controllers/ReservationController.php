@@ -11,9 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class ReservationController extends Controller
 {
     public function home(){
-        $data = [
-            'reservations' => Reservation::where('user_id', Auth::user()->id)->latest()->get(),
-        ];
+        if(Auth::user()->role == 'receptionist' || Auth::user()->role == 'admin'){
+            $data = [
+                'reservations' => Reservation::latest()->get(),
+            ];
+        }else{
+            $data = [
+                'reservations' => Reservation::where('user_id', Auth::user()->id)->latest()->get(),
+            ];
+        }
 
         return view('reservation.history-reservation', $data);
     }
@@ -25,8 +31,8 @@ class ReservationController extends Controller
         ];
 
         return view('reservation.make-reservation', $data);
-        dd($roomType->roomTypeImages[0]);
-        dd($roomType);
+        // dd($roomType->roomTypeImages[0]);
+        // dd($roomType);
     }
 
     public function store(Request $request, RoomType $roomType){
@@ -42,9 +48,22 @@ class ReservationController extends Controller
             'payment_mtd' => $request->payment_mtd,
         ]);
 
-        dd($newReservation);
+        return redirect()->route('home.my-reservation');
+    }
 
-        dd(Auth::user()->id);
-        dd($roomType, $request->all());
+    public function checkIn(Request $request, Reservation $reservation){
+        $reservation->update([
+            'status' => 'Checked In'
+        ]);
+
+        return redirect()->route('home.my-reservation')->with('checkedIn', 'Reservation status changed to Checked In successfully');
+    }
+
+    public function checkout(Request $request, Reservation $reservation){
+        $reservation->update([
+            'status' => 'Checked Out'
+        ]);
+
+        return redirect()->route('home.my-reservation')->with('checkedOut', 'Reservation status changed to Checked Out successfully');
     }
 }

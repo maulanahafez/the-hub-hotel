@@ -79,7 +79,7 @@
             </div>
             @auth
               <div>
-                <a href="/"
+                <a href="{{ route('home.my-reservation') }}"
                   class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
                   <i class="fa-solid fa-clock-rotate-left"></i>
                   <span>Reservations</span>
@@ -175,7 +175,7 @@
               </div>
               @auth
                 <div>
-                  <a href="/"
+                  <a href="{{ route('home.my-reservation') }}"
                     class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
                     <div class="flex h-8 w-8">
                       <i class="fa-solid fa-clock-rotate-left m-auto text-lg"></i>

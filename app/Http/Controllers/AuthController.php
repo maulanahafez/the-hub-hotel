@@ -51,13 +51,12 @@ class AuthController extends Controller
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
-
         ];
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if ($user->role === 'admin') {
+            if ($user->role == 'admin') {
                 $request->session()->regenerate();
                 session()->flash('successLogin', "Successfully logged in");
 

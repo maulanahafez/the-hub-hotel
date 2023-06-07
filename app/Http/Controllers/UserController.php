@@ -38,7 +38,6 @@ class UserController extends Controller
             'role' => $request->role
         ]);
 
-
         return redirect()->route('user.index');
     }
 

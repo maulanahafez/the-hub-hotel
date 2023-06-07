@@ -43,6 +43,8 @@ Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'details'])->na
 Route::post('/reservation/{roomType:slug}', [ReservationController::class, 'reservation'])->name('home.reservation')->middleware('auth');
 Route::post('/reservation/{roomType:slug}/store', [ReservationController::class, 'store'])->name('home.reservation.store')->middleware('auth');
 Route::get('/my-reservation', [ReservationController::class, 'home'])->name('home.my-reservation')->middleware('auth');
+Route::post('/my-reservation/{reservation:id}/check-in', [ReservationController::class, 'checkIn'])->name('home.check-in')->middleware('auth');
+Route::post('/my-reservation/{reservation:id}/check-out', [ReservationController::class, 'checkOut'])->name('home.check-out')->middleware('auth');
 
 // Dashboard
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
