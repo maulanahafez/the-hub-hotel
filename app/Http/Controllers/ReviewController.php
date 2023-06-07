@@ -27,6 +27,15 @@ class ReviewController extends Controller
         return redirect()->route('home.review');
         
     }
+
+    // dashboard
+    public function index(){
+        $data=[
+            'reviews'=>Review::latest()->get(),
+        ];
+        // dd($data['reviews']);
+        return view('dashboard.review.index', $data);
+    }
 }
 
 

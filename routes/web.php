@@ -65,4 +65,10 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/{roomType:slug}', [RoomTypeController::class, 'show'])->name('room-type.show');
         Route::post('/{roomType:slug}/update', [RoomTypeController::class, 'update'])->name('room-type.update');
     });
+
+    // Review
+    Route::prefix('/review')->group(function(){
+        Route::get('/',[ReviewController::class,'index'])->name('review.index');
+        
+    });
 });
