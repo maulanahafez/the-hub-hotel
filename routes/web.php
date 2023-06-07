@@ -41,6 +41,7 @@ Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'details'])->na
 
 // Reviews
 Route::get('/reviews', [ReviewController::class, 'home'])->name('home.review');
+Route::post('/reviews/store',[ReviewController::class, 'store'])->name('home.review.store');
 
 // Dashboard
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {

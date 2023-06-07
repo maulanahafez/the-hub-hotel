@@ -27,18 +27,19 @@
           glimpse into the exceptional service and unforgettable moments that
           await you at our hotel.
         </h2>
+        @auth
         <div class="">
           <span
             href="/"
             class="mt-4 inline-block cursor-pointer rounded-lg bg-sky-500 px-4 py-2 text-sm text-white transition hover:bg-sky-950"
             x-on:click="modal = !modal"
-          >
+            >
             <span>Give Reviews</span>
           </span>
         </div>
         <form
-          action=""
-          method=""
+          action="{{route('home.review.store')}}"
+          method="post"
           class="mt-6"
           x-show="modal"
           x-transition:enter="transition"
@@ -48,6 +49,8 @@
           x-transition:leave-start="opacity-100 translate-y-8"
           x-transition:leave-end="opacity-0"
         >
+        {{-- token untuk form --}}
+          @csrf
           <div
             class="flex items-center gap-x-4 text-xl text-gray-300"
             x-data="handleRating()"
@@ -124,6 +127,8 @@
             </button>
           </div>
         </form>
+            
+        @endauth
         <div class="mt-8">
             @foreach($reviews as $review)
             <div class="border-b border-black/20 py-2">
