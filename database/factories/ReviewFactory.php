@@ -19,6 +19,12 @@ class ReviewFactory extends Factory
         return [
             'rating' => fake()->numberBetween(1,5),
             'review' => fake()->paragraph(),
+            'visibility' => $this->visibility(),
         ];
+    }
+
+    public function visibility(){
+        $visibility = ['Hidden', 'Show'];
+        return $visibility[rand(0,1)];
     }
 }

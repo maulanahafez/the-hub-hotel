@@ -61,12 +61,14 @@
                   @endif
                 </p>
               </div>
-              <div class="mt-2 flex gap-x-1 text-sm">
-                <p>ID:</p>
-                <p>
-                  {{ $reservation->id }}
-                </p>
-              </div>
+              @if (Auth::user()->role == 'receptionist' || Auth::user()->role == 'admin')
+                <div class="mt-2 flex gap-x-1 text-sm">
+                  <p>ID:</p>
+                  <p>
+                    {{ $reservation->id }}
+                  </p>
+                </div>
+              @endif
               <div class="relative mt-2 flex flex-wrap items-center gap-x-8 text-sm text-black/60">
                 <div class="flex flex-wrap gap-x-2">
                   <p>{{ $reservation->date_in }}</p>

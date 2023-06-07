@@ -66,4 +66,20 @@ class ReservationController extends Controller
 
         return redirect()->route('home.my-reservation')->with('checkedOut', 'Reservation status changed to Checked Out successfully');
     }
+
+    public function index(){
+        $data = [
+            'reservations' => Reservation::latest()->get(),
+        ];
+
+        return view('dashboard.reservation.index', $data);
+    }
+
+    public function detail(Reservation $reservation){
+        $data = [
+            'reservation' => $reservation,
+        ];
+        // dd($reservation);
+        return view('dashboard.reservation.detail', $data);
+    }
 }

@@ -14,7 +14,7 @@
               </p>
               <p class="font-poppins mt-1 gap-x-1 text-xl font-semibold">
                 <span>$</span>
-                <span>29000</span>
+                <span>{{ $totalEarnings }}</span>
               </p>
             </div>
             <div class="shadow-dark-custom rounded-md bg-purple-500 px-5 py-3 text-white">
@@ -25,7 +25,7 @@
                 Total Transaction
               </p>
               <p class="font-poppins mt-1 gap-x-1 text-xl font-semibold">
-                40
+                {{ $totalTransactions }}
               </p>
               <p class="mt-1 text-sm text-gray-200">this month</p>
             </div>
@@ -37,7 +37,7 @@
                 User Registered
               </p>
               <p class="font-poppins mt-1 gap-x-1 text-xl font-semibold">
-                29
+                {{ $userRegistered }}
               </p>
               <p class="mt-1 text-sm text-gray-200">accounts</p>
             </div>
@@ -49,7 +49,7 @@
                 Rooms Available
               </p>
               <p class="font-poppins mt-1 gap-x-1 text-xl font-semibold">
-                29
+                {{ $roomsAvailable }}
               </p>
               <p class="mt-1 text-sm text-gray-200">rooms</p>
             </div>
@@ -61,7 +61,7 @@
                 Rating Reviews
               </p>
               <p class="font-poppins mt-1 gap-x-1 text-xl font-semibold">
-                4.9
+                {{ $rating }}
               </p>
             </div>
           </div>
@@ -81,71 +81,29 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">
-                        <span class="block h-5 w-5 rounded-sm bg-green-500"></span>
-                      </td>
-                      <td class="px-2">Usriyatul Khamimah</td>
-                      <td class="px-2">Penthouse P105</td>
-                      <td class="px-2">
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">
-                        <span class="block h-5 w-5 rounded-sm bg-green-500"></span>
-                      </td>
-                      <td class="px-2">Ahita Bisma</td>
-                      <td class="px-2">Deluxe D101</td>
-                      <td class="px-2">
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">
-                        <span class="block h-5 w-5 rounded-sm bg-green-500"></span>
-                      </td>
-                      <td class="px-2">Maulana Hafez</td>
-                      <td class="px-2">Executive E201</td>
-                      <td class="px-2">
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">
-                        <span class="block h-5 w-5 rounded-sm bg-green-500"></span>
-                      </td>
-                      <td class="px-2">Ahita Bisma</td>
-                      <td class="px-2">Family F102</td>
-                      <td class="px-2">
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">
-                        <span class="block h-5 w-5 rounded-sm bg-green-500"></span>
-                      </td>
-                      <td class="px-2">Usriyatul Khamimah</td>
-                      <td class="px-2">Penthouse P105</td>
-                      <td class="px-2">
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
+                    @foreach ($reservations as $reservation)
+                      <tr class="border-y border-black/20 text-sm">
+                        <td class="px-2 py-3">
+                          @if ($reservation->status == 'Pending')
+                            <span class="block h-5 w-5 rounded-sm bg-gray-500"></span>
+                          @elseif($reservation->status == 'Checked In')
+                            <span class="block h-5 w-5 rounded-sm bg-green-500"></span>
+                          @else
+                            <span class="block h-5 w-5 rounded-sm bg-blue-500"></span>
+                          @endif
+                        </td>
+                        <td class="px-2">{{ $reservation->user->name }}</td>
+                        <td class="px-2 capitalize">{{ $reservation->room->roomType->type }}
+                          {{ $reservation->room->room_code }}
+                        </td>
+                        <td class="px-2">
+                          <a href="{{ route('reservation.detail', ['reservation' => $reservation->id]) }}"
+                            class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -165,45 +123,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">1</td>
-                      <td class="px-2">Maulana Hafez</td>
-                      <td class="px-2">
-                        maulana.tempariyawan@mhs.unsoed.ac.id
-                      </td>
-                      <td>
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">1</td>
-                      <td class="px-2">Usriyatul Khamimah</td>
-                      <td class="px-2">
-                        maulana.tempariyawan@mhs.unsoed.ac.id
-                      </td>
-                      <td>
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="border-y border-black/20 text-sm">
-                      <td class="px-2 py-3">1</td>
-                      <td class="px-2">Ahita Bisma</td>
-                      <td class="px-2">
-                        maulana.tempariyawan@mhs.unsoed.ac.id
-                      </td>
-                      <td>
-                        <a href=""
-                          class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
+                    @foreach ($users as $user)
+                      <tr class="border-y border-black/20 text-sm">
+                        <td class="px-2 py-3">{{ $loop->iteration }}</td>
+                        <td class="px-2">{{ $user->name }}</td>
+                        <td class="px-2">
+                          {{ $user->email }}
+                        </td>
+                        <td>
+                          <a href="{{ route('user.edit', ['user' => $user->id]) }}"
+                            class="hover:bg-sky-950 cursor-pointer rounded-full bg-blue-500 px-4 py-1 text-[12px] text-white transition">
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

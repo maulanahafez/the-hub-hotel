@@ -27,6 +27,20 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
+
+  {{-- Datatables --}}
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  {{-- DataTables --}}
+  <link rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script defer
+    type="text/javascript"
+    src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body class="font-open-sans bg-gray-100">
@@ -129,7 +143,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('reservation.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-receipt m-auto text-lg"></i>
@@ -138,7 +152,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('review.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-face-smile m-auto text-lg"></i>
@@ -191,7 +205,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href=""
+                  <a href="/"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-bed m-auto text-lg"></i>
@@ -200,7 +214,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('reservation.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-receipt m-auto text-lg"></i>
@@ -209,7 +223,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('review.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-face-smile m-auto text-lg"></i>
