@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id');
-            $table->foreignId('user_id');
+            $table->foreignId('room_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_in');
             $table->date('date_out');
             $table->string('status')->default('Pending');

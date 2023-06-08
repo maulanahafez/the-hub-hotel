@@ -36,7 +36,7 @@
                   :class="type === '{{ $roomType->type }}' ? 'border-blue-500' : 'border-transparent'">
                   <span class="h-2 w-2 rounded-full border border-black/20 ring ring-black/20 ring-offset-2"
                     :class="type === '{{ $roomType->type }}' ? 'bg-blue-500' : 'bg-white'"></span>
-                  {{ $roomType->type }}
+                  {{ ucwords($roomType->type) }}
                 </label>
               </div>
             @endforeach
