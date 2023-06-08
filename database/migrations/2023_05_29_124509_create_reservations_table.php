@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->date('date_in');
             $table->date('date_out');
-            $table->string('status');
+            $table->string('status')->default('Pending');
             $table->unsignedSmallInteger('range');
             $table->unsignedBigInteger('total_price');
             $table->string('payment_mtd');

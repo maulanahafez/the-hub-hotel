@@ -71,7 +71,7 @@
               </a>
             </div>
             <div>
-              <a href="/"
+              <a href="{{ route('home.review') }}"
                 class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
                 <i class="fa-solid fa-star"></i>
                 <span>Reviews</span>
@@ -79,7 +79,7 @@
             </div>
             @auth
               <div>
-                <a href="/"
+                <a href="{{ route('home.my-reservation') }}"
                   class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
                   <i class="fa-solid fa-clock-rotate-left"></i>
                   <span>Reservations</span>
@@ -165,7 +165,7 @@
                 </a>
               </div>
               <div>
-                <a href="/"
+                <a href="{{ route('home.review') }}"
                   class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
                   <div class="flex h-8 w-8">
                     <i class="fa-solid fa-star m-auto text-lg"></i>
@@ -175,7 +175,7 @@
               </div>
               @auth
                 <div>
-                  <a href="/"
+                  <a href="{{ route('home.my-reservation') }}"
                     class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
                     <div class="flex h-8 w-8">
                       <i class="fa-solid fa-clock-rotate-left m-auto text-lg"></i>
@@ -233,7 +233,7 @@
               Discover Your Perfect Escape with The Hub Hotel for
               Unforgettable Getaways
             </p>
-            <a href="/"
+            <a href="{{ route('home.room-type') }}"
               class="hover:bg-sky-950 mt-4 inline-block rounded-full bg-sky-500 px-4 py-2 font-bold text-white transition lg:hidden">
               <span>Book now</span>
             </a>
@@ -249,7 +249,7 @@
                 </p>
               </div>
               <div class="flex basis-1/5">
-                <a href="/"
+                <a href="{{ route('home.room-type') }}"
                   class="mx-auto rounded-full border-2 border-sky-500 px-4 py-2 font-bold text-white transition hover:bg-sky-500">
                   <span>Book now</span>
                 </a>
@@ -372,98 +372,56 @@
         guests.
       </h2>
       <div class="mt-8 grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <a href="/"
-          class="mx-auto max-w-xs overflow-hidden rounded-lg border border-black/30 shadow-md transition hover:shadow-xl md:max-w-none">
-          <div>
-            <img src="../../assets/hotel-rooms/1.jpg"
-              alt=""
-              class="" />
-          </div>
-          <div class="px-4 py-3">
-            <div class="flex items-center justify-between">
-              <h1 class="text-md font-poppins font-bold">Penthouse Suite</h1>
-              <p class="text-sm font-semibold text-sky-500">$1,000/night</p>
+        @foreach ($roomTypes as $roomType)
+          @foreach ($roomType->roomTypeImages as $image)
+            @if ($loop->first)
+              @php
+                $path = $image->path;
+              @endphp
+            @endif
+          @endforeach
+          <a href="{{ route('home.room-type.details', ['roomType' => $roomType->slug]) }}"
+            class="mx-auto max-w-xs overflow-hidden rounded-lg border border-black/30 shadow-md transition hover:border-sky-500 hover:shadow-xl md:max-w-none">
+            <div>
+              <img
+                @isset($path)
+                  src="{{ asset('storage/' . $path) }}"
+                @else
+                  src="/"
+                @endisset
+                alt=""
+                class="" />
             </div>
-            <div class="mt-2 flex items-center gap-x-6 text-[12px] text-gray-500">
-              <div class="flex items-center gap-x-2">
-                <i class="fa-solid fa-bed"></i>
-                <p>1 Single Bed</p>
+            @php
+              $path = '';
+            @endphp
+            <div class="px-4 py-3">
+              <div class="flex items-center justify-between">
+                <h1 class="text-md font-poppins font-bold capitalize">{{ $roomType->type }}</h1>
+                <p class="text-sm font-semibold text-sky-500">${{ $roomType->price_per_day }}</p>
               </div>
-              <div class="flex items-center gap-x-2">
-                <i class="fa-solid fa-users"></i>
-                <p>8</p>
+              <div class="mt-2 flex items-center gap-x-6 text-[12px] text-gray-500">
+                <div class="flex items-center gap-x-2 capitalize">
+                  <i class="fa-solid fa-bed"></i>
+                  <p>{{ $roomType->bed_qty }} {{ $roomType->bed_type }} Bed</p>
+                </div>
+                <div class="flex items-center gap-x-2">
+                  <i class="fa-solid fa-users"></i>
+                  <p>{{ $roomType->capacity }}</p>
+                </div>
               </div>
+              <p class="line-clamp-3 mt-2 text-[12px]">
+                {{ $roomType->desc }}
+              </p>
             </div>
-            <p class="line-clamp-3 mt-2 text-[12px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-              recusandae sed delectus, possimus laboriosam quibusdam modi
-              culpa sit adipisci alias.
-            </p>
-          </div>
-        </a>
-        <a href="/"
-          class="mx-auto max-w-xs overflow-hidden rounded-lg border border-black/30 shadow-md transition hover:shadow-xl md:max-w-none">
-          <div>
-            <img src="../../assets/hotel-rooms/2.jpg"
-              alt=""
-              class="" />
-          </div>
-          <div class="px-4 py-3">
-            <div class="flex items-center justify-between">
-              <h1 class="text-md font-poppins font-bold">Family Room</h1>
-              <p class="text-sm font-semibold text-sky-500">$1,000/night</p>
-            </div>
-            <div class="mt-2 flex items-center gap-x-6 text-[12px] text-gray-500">
-              <div class="flex items-center gap-x-2">
-                <i class="fa-solid fa-bed"></i>
-                <p>1 Single Bed</p>
-              </div>
-              <div class="flex items-center gap-x-2">
-                <i class="fa-solid fa-users"></i>
-                <p>8</p>
-              </div>
-            </div>
-            <p class="line-clamp-3 mt-2 text-[12px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-              recusandae sed delectus, possimus laboriosam quibusdam modi
-              culpa sit adipisci alias.
-            </p>
-          </div>
-        </a>
-        <a href="/"
-          class="mx-auto max-w-xs overflow-hidden rounded-lg border border-black/30 shadow-md transition hover:shadow-xl md:max-w-none">
-          <div>
-            <img src="../../assets/hotel-rooms/3.jpg"
-              alt=""
-              class="" />
-          </div>
-          <div class="px-4 py-3">
-            <div class="flex items-center justify-between">
-              <h1 class="text-md font-poppins font-bold">Executive Room</h1>
-              <p class="text-sm font-semibold text-sky-500">$1,000/night</p>
-            </div>
-            <div class="mt-2 flex items-center gap-x-6 text-[12px] text-gray-500">
-              <div class="flex items-center gap-x-2">
-                <i class="fa-solid fa-bed"></i>
-                <p>1 Single Bed</p>
-              </div>
-              <div class="flex items-center gap-x-2">
-                <i class="fa-solid fa-users"></i>
-                <p>8</p>
-              </div>
-            </div>
-            <p class="line-clamp-3 mt-2 text-[12px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-              recusandae sed delectus, possimus laboriosam quibusdam modi
-              culpa sit adipisci alias.
-            </p>
-          </div>
-        </a>
+          </a>
+        @endforeach
       </div>
       <div class="mt-2 text-center">
-        <a href="/"
-          class="hover:bg-sky-950 mt-4 inline-block rounded-full bg-sky-500 px-4 py-2 font-bold text-white transition"><span>See
-            More</span></a>
+        <a href="{{ route('home.room-type') }}"
+          class="hover:bg-sky-950 mt-4 inline-block rounded-full bg-sky-500 px-4 py-2 font-bold text-white transition">
+          <span>See More</span>
+        </a>
       </div>
     </div>
   </section>
@@ -494,145 +452,40 @@
             class="mx-auto aspect-square h-80 w-full rounded-xl object-cover" />
         </div>
         <div class="relative mx-auto mt-4 max-w-lg md:mt-0">
-          <div class=""
-            x-show="show === 1"
-            x-transition:enter="transition"
-            x-transition:enter-start="opacity-0 -translate-y-20"
-            x-transition:enter-end="opacity-100">
-            <div class="">
-              <p class="font-poppins text-sky-950 text-xl font-bold">
-                Maulana Hafez
-              </p>
-              <p class="mt-4 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                dicta saepe tenetur autem quos, voluptatem hic dignissimos
-                praesentium maxime ea voluptatum necessitatibus pariatur dolor
-                vero at earum illum totam non!
-              </p>
-              <div class="mt-2 flex justify-between gap-x-2">
-                <p class="text-sky-500">2 days ago</p>
-                <div class="flex items-center gap-x-2 text-yellow-500">
-                  <p>5</p>
-                  <div>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+          @foreach ($reviews as $review)
+            <div x-show="show === {{ $loop->iteration }}"
+              x-transition:enter="transition"
+              x-transition:enter-start="opacity-0 -translate-y-20"
+              x-transition:enter-end="opacity-100">
+              <div>
+                <p class="font-poppins text-sky-950 text-xl font-bold">
+                  {{ $review->user->name }}
+                </p>
+                <p class="mt-4 text-sm text-gray-600">
+                  {{ $review->review }}
+                </p>
+                <div class="mt-2 flex justify-between gap-x-2">
+                  <p class="text-sky-500">{{ $review->created_at->diffForHumans() }}</p>
+                  <div class="flex items-center gap-x-2 text-yellow-500">
+                    <p>{{ $review->rating }}</p>
+                    <div>
+                      @for ($i = 0; $i < 5; $i++)
+                        @if ($i < $review->rating)
+                          <i class="fa-solid fa-star"></i>
+                        @else
+                          <i class="fa-regular fa-star"></i>
+                        @endif
+                      @endfor
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class=""
-            x-show="show === 2"
-            x-transition:enter="transition"
-            x-transition:enter-start="opacity-0 -translate-y-20"
-            x-transition:enter-end="opacity-100">
-            <div class="">
-              <p class="font-poppins text-sky-950 text-xl font-bold">
-                Ahita Bisma
-              </p>
-              <p class="mt-4 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                dicta saepe tenetur autem quos, voluptatem hic dignissimos
-                praesentium maxime ea voluptatum necessitatibus pariatur dolor
-                vero at earum illum totam non!
-              </p>
-              <div class="mt-2 flex justify-between gap-x-2">
-                <p class="text-sky-500">2 days ago</p>
-                <div class="flex items-center gap-x-2 text-yellow-500">
-                  <p>5</p>
-                  <div>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class=""
-            x-show="show === 3"
-            x-transition:enter="transition"
-            x-transition:enter-start="opacity-0 -translate-y-20"
-            x-transition:enter-end="opacity-100">
-            <div class="">
-              <p class="font-poppins text-sky-950 text-xl font-bold">
-                Usriyatul Khamimah
-              </p>
-              <p class="mt-4 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                dicta saepe tenetur autem quos, voluptatem hic dignissimos
-                praesentium maxime ea voluptatum necessitatibus pariatur dolor
-                vero at earum illum totam non!
-              </p>
-              <div class="mt-2 flex justify-between gap-x-2">
-                <p class="text-sky-500">2 days ago</p>
-                <div class="flex items-center gap-x-2 text-yellow-500">
-                  <p>5</p>
-                  <div>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class=""
-            x-show="show === 4"
-            x-transition:enter="transition"
-            x-transition:enter-start="opacity-0 -translate-y-20"
-            x-transition:enter-end="opacity-100">
-            <div class="">
-              <p class="font-poppins text-sky-950 text-xl font-bold">
-                Michael Andy
-              </p>
-              <p class="mt-4 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                dicta saepe tenetur autem quos, voluptatem hic dignissimos
-                praesentium maxime ea voluptatum necessitatibus pariatur dolor
-                vero at earum illum totam non!
-              </p>
-              <div class="mt-2 flex justify-between gap-x-2">
-                <p class="text-sky-500">2 days ago</p>
-                <div class="flex items-center gap-x-2 text-yellow-500">
-                  <p>5</p>
-                  <div>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class=""
-            x-show="show === 5"
-            x-transition:enter="transition"
-            x-transition:enter-start="opacity-0 -translate-y-20"
-            x-transition:enter-end="opacity-100">
-            <div class="">
-              <p class="font-poppins text-sky-950 text-xl font-bold">
-                Diana Craig
-              </p>
-              <p class="mt-4 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                dicta saepe tenetur autem quos, voluptatem hic dignissimos
-                praesentium maxime ea voluptatum necessitatibus pariatur dolor
-                vero at earum illum totam non!
-              </p>
-              <div class="mt-2 flex justify-between gap-x-2">
-                <p class="text-sky-500">2 days ago</p>
-                <div class="flex items-center gap-x-2 text-yellow-500">
-                  <p>5</p>
-                  <div>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
           <div class="absolute left-1/2 top-full mt-4 flex -translate-x-1/2">
             <span
               class="mx-auto flex h-12 w-12 cursor-pointer rounded-full bg-blue-500 transition hover:bg-sky-400 hover:shadow-lg"
-              x-on:click="() => show + 1 > 5 ? show = 1 : show = show + 1">
+              x-on:click="() => show + 1 > {{ count($reviews) }} ? show = 1 : show = show + 1">
               <i class="fa-solid fa-arrow-down m-auto text-lg text-white"></i>
             </span>
           </div>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->unsignedTinyInteger('rating');
             $table->text('review');
+            $table->string('visibility');
             $table->timestamps();
         });
     }

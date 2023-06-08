@@ -62,7 +62,7 @@
               </a>
             </div>
             <div>
-              <a href="/"
+              <a href="{{ route('home.review') }}"
                 class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
                 <i class="fa-solid fa-star"></i>
                 <span>Reviews</span>
@@ -70,7 +70,7 @@
             </div>
             @auth
               <div>
-                <a href="/"
+                <a href="{{ route('home.my-reservation') }}"
                   class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
                   <i class="fa-solid fa-clock-rotate-left"></i>
                   <span>Reservations</span>
@@ -96,7 +96,7 @@
               </form>
             @else
               <div>
-                <a href="/"
+                <a href="{{ route('login') }}"
                   class="hover:bg-sky-950 rounded-lg bg-sky-500 px-6 py-2 text-sm font-bold text-white transition">
                   <span>Login</span>
                 </a>
@@ -154,7 +154,7 @@
                 </a>
               </div>
               <div>
-                <a href="/"
+                <a href="{{ route('home.review') }}"
                   class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
                   <div class="flex h-8 w-8">
                     <i class="fa-solid fa-star m-auto text-lg"></i>
@@ -164,7 +164,7 @@
               </div>
               @auth
                 <div>
-                  <a href="/"
+                  <a href="{{ route('home.my-reservation') }}"
                     class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
                     <div class="flex h-8 w-8">
                       <i class="fa-solid fa-clock-rotate-left m-auto text-lg"></i>
@@ -286,6 +286,7 @@
       </div>
     </div>
   </footer>
+
 </body>
 
 </html>

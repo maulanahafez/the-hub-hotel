@@ -10,7 +10,7 @@ class ReviewController extends Controller
 {
     public function home(){
         $data=[
-            'reviews'=>Review::latest()->get(),
+            'reviews'=>Review::where('visibility', 'Show')->latest()->get(),
         ];
         return view('review.index', $data);
     }
@@ -35,6 +35,22 @@ class ReviewController extends Controller
         ];
         // dd($data['reviews']);
         return view('dashboard.review.index', $data);
+    }
+
+    public function show(Review $review){
+        $review->update([
+            'visibility' => 'Show'
+        ]);
+        return redirect()->route('review.index')->with('showSuccess', 'Show Successfully');
+        dd($review);
+    }
+
+    public function hide(Review $review){
+        $review->update([
+            'visibility' => 'Hidden'
+        ]);
+        return redirect()->route('review.index')->with('hideSuccess', 'Hidden Successfully');
+        dd($review);
     }
 }
 
