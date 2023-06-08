@@ -8,7 +8,8 @@
         </div>
       </div>
       <div class="grow">
-        <div class="shadow-dark-custom grid grid-cols-1 gap-y-4 rounded-md bg-white px-5 py-6 lg:order-first">
+        <div class="shadow-dark-custom grid grid-cols-1 gap-y-4 rounded-md bg-white px-5 py-6 lg:order-first"
+          x-data="{ modal: false }">
           <h1 class="font-poppins border-b border-black/20 pb-1 text-3xl">
             Account Details
           </h1>
@@ -115,26 +116,60 @@
                 @endif
               </div>
             </div>
-            <div class="flex justify-end gap-x-3">
-              <span class="inline-block cursor-pointer rounded-sm bg-green-500 px-4 py-1 text-white"
-                x-show="!edit"
-                x-on:click="edit = true">
-                <span>Edit Profile</span>
-              </span>
-              <span class="inline-block cursor-pointer rounded-sm bg-yellow-500 px-4 py-1 text-white"
-                x-show="edit"
-                x-on:click="location.reload()">
-                <span>Cancel</span>
-              </span>
-              <template x-if="edit">
-                <button type="submit"
-                  class="inline-block cursor-pointer rounded-sm bg-blue-500 px-4 py-1 text-white"
+            <div class="flex flex-wrap justify-between gap-y-2">
+              <div>
+                <span class="inline-block cursor-pointer rounded-sm bg-red-500 px-4 py-1 text-white"
+                  x-on:click="modal = true">
+                  <span>Delete Profile</span>
+                </span>
+              </div>
+              <div class="flex justify-end gap-x-3">
+                <span class="inline-block cursor-pointer rounded-sm bg-green-500 px-4 py-1 text-white"
+                  x-show="!edit"
                   x-on:click="edit = true">
-                  <span>Save Profile</span>
-                </button>
-              </template>
+                  <span>Edit Profile</span>
+                </span>
+                <span class="inline-block cursor-pointer rounded-sm bg-yellow-500 px-4 py-1 text-white"
+                  x-show="edit"
+                  x-on:click="location.reload()">
+                  <span>Cancel</span>
+                </span>
+                <template x-if="edit">
+                  <button type="submit"
+                    class="inline-block cursor-pointer rounded-sm bg-blue-500 px-4 py-1 text-white"
+                    x-on:click="edit = true">
+                    <span>Save Profile</span>
+                  </button>
+                </template>
+              </div>
             </div>
           </form>
+          <div class="fixed inset-0 z-[999] flex bg-black/40"
+            x-show="modal"
+            x-transition:enter="transition ease-in-out duration-500"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in-out duration-500"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0">
+            <form action="{{ route('user.destroy', ['user' => $user->id]) }}"
+              method="post"
+              class="m-auto rounded-lg bg-white px-8 py-4">
+              @csrf
+              <p class="border-b border-black/40 pb-2 text-lg">Are you sure want to delete this profile?</p>
+              <div class="mt-4 flex">
+                <p class="mx-auto flex h-20 w-20 rounded-full border-2 border-black/80 text-3xl">
+                  <i class="fa-solid fa-question m-auto"></i>
+                </p>
+              </div>
+              <div class="mt-4 flex flex-wrap justify-center gap-2">
+                <p class="cursor-pointer bg-gray-500 py-1 px-3 text-sm text-white"
+                  x-on:click="modal = false">Cancel</p>
+                <button type="submit"
+                  class="bg-red-500 py-1 px-3 text-sm text-white">Delete</button>
+              </div>
+            </form>
+          </div>
         </div>
         <script>
           document.addEventListener("alpine:init", () => {

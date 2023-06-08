@@ -11,6 +11,11 @@
             <span class="text-sm">Add</span>
           </a>
         </div>
+        @if (session('successDelete'))
+          <div class="mt-4">
+            <p class="rounded-md bg-green-500 px-3 py-2 text-sm text-white">Account delete successfully!</p>
+          </div>
+        @endif
         <div class="mt-4 overflow-x-auto"
           x-data="{ selected: 'All' }">
           <div class="flex flex-wrap justify-end gap-x-2 gap-y-2">

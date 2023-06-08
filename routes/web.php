@@ -62,6 +62,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/store', [UserController::class, 'store'])->name('user.store');
         Route::get('/{user:id}', [UserController::class, 'edit'])->name('user.edit');
         Route::post('/{user:id}/update', [UserController::class, 'update'])->name('user.update');
+        Route::post('/{user:id}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
     });
 
     // Room Type

@@ -106,4 +106,10 @@ class UserController extends Controller
 
         return redirect()->route('home.userProfile', ['user' => $user->id]);
     }
+
+    public function destroy(User $user){
+        $user->delete();
+        return redirect()->route('user.index')->with('successDelete', 'Account deleted successfully');
+        dd($user);
+    }
 }
