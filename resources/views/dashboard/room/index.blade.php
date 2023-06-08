@@ -27,6 +27,11 @@
             </span>
           </div> --}}
         </div>
+        @if (session('successStore'))
+          <div>
+            <p class="mt-4 rounded-sm bg-green-500 px-3 py-2 text-white">Room has been created successfully!</p>
+          </div>
+        @endif
         @if (session('successDelete'))
           <div>
             <p class="mt-4 rounded-sm bg-green-500 px-3 py-2 text-white">Room has been deleted successfully!</p>

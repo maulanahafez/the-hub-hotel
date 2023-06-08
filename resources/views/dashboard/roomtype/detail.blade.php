@@ -11,10 +11,15 @@
           x-data="form">
           @csrf
           @if ($errors->any())
-            <div class="grid grid-cols-1 gap-y-1 rounded-md bg-red-500 px-6 py-2 text-sm text-white">
+            <div class="mb-4 grid grid-cols-1 gap-y-1 rounded-sm bg-red-500 px-4 py-2 text-sm text-white">
               @foreach ($errors->all() as $error)
                 <p>{{ $error }}</p>
               @endforeach
+            </div>
+          @endif
+          @if (session('successUpdate'))
+            <div class="mb-4 rounded-sm bg-green-500 py-2 px-3 text-sm text-white">
+              {{ session('successUpdate') }}
             </div>
           @endif
           <div class="grid grid-cols-1 gap-y-6"

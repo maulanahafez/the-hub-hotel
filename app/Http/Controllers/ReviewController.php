@@ -16,7 +16,10 @@ class ReviewController extends Controller
     }
     
     public function store(Request $request){
-        // dd($request->all());
+        $request->validate([
+            'rating' => ['required'],
+            'rating' => ['required'],
+        ]);
 
         $review=Review::create([
             'user_id'=>Auth::user()->id,

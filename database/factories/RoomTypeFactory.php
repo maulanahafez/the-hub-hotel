@@ -30,8 +30,8 @@ class RoomTypeFactory extends Factory
     }
 
     private function type(){
-        $type = ['deluxe room', 'executive room', 'family room', 'penthouse suite', 'standard', 'junior suite', 'presidential suite', 'duplex suite'];
-        return $type[rand(0,7)];
+        $type = ['deluxe room', 'executive room', 'family room', 'penthouse suite', 'standard room', 'junior suite', 'presidential suite', 'duplex suite', 'view room', 'connecting room', 'superior room', 'bungalow'];
+        return $type[rand(0,11)];
     }
 
     private function bedType(){

@@ -36,7 +36,9 @@ class RoomController extends Controller
             'room_type_id' => $roomType->id,
             'room_code' => $request->room_code,
         ]);
-        dd($room);
+
+        return redirect()->route('room.index')->with('successStore', 'Room has been created successfully!');
+        // dd($room);
         // dd($roomType);
 
     }

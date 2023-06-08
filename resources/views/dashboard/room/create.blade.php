@@ -1,5 +1,5 @@
 <x-layout.layout-dashboard>
-  @dump($roomTypes)
+  {{-- @dump($roomTypes) --}}
   <div class="mt-[53px] p-5 lg:ml-[256px]">
     <div class="shadow-dark-custom grid grid-cols-1 gap-y-4 rounded-md bg-white px-5 py-6 lg:order-first">
       <h1 class="font-poppins border-b border-black/20 pb-1 text-3xl">

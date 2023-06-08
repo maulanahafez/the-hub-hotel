@@ -160,7 +160,7 @@
           </div>
         </div>
         <div x-data="handleFacility"
-          @if ($errors->any()) x-init="facility = '{{ old('facility') }}'" @endif>
+          @if ($errors->any()) x-init="facility = oldFacility.split(',')" @endif>
           <h1 class="mb-1 text-xl font-semibold">Facility</h1>
           <p class="mt-0.5 text-[12px] text-black/60">
             Choose the facilities for this room's type
@@ -392,6 +392,7 @@
     <script>
       document.addEventListener("alpine:init", () => {
         Alpine.data("handleFacility", () => ({
+          oldFacility: '{{ old('facility') }}',
           facility: [],
         }));
       });
