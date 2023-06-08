@@ -35,7 +35,7 @@
                 @isset($roomType->roomTypeImages[0])
                   src="{{ asset('storage/' . $roomType->roomTypeImages[0]->path) }}"
                 @else
-                  src="/"
+                  src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                 @endisset
                 alt=""
                 class="h-full w-full object-cover sm:w-60" />
@@ -178,7 +178,8 @@
             x-transition:enter-end="opacity-100">
             <div class="mt-6 overflow-hidden rounded-lg border border-black/20 p-4 text-start text-[12px]">
               <h1 class="font-poppins text-xl">Reservation Summary</h1>
-              <form action="{{ route('home.reservation.store', ['roomType' => $roomType->slug]) }}"
+              <form
+                action="{{ route('home.reservation.store', ['roomType' => $roomType->slug, 'room' => $room->id]) }}"
                 method="post"
                 class="grid grid-cols-1 gap-y-2">
                 @csrf

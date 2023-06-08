@@ -1,11 +1,12 @@
 <x-layout.layout-dashboard>
+  {{-- @dd($reviews[0]->user->name) --}}
   <div class="mt-[53px] p-5 lg:ml-[256px]">
     <h1 class="font-poppins text-2xl font-semibold">Rating and Reviews</h1>
     <div class="shadow-dark-custom mt-4 rounded-md bg-white px-5 py-2">
       <div class="mt-4 overflow-x-auto">
         <div class="overflow-x-auto"
           x-data="{ selected: 'All' }">
-          <div class="mt-4 mb-4 flex flex-wrap justify-end gap-x-2 gap-y-2">
+          {{-- <div class="mt-4 mb-4 flex flex-wrap justify-end gap-x-2 gap-y-2">
             <p class="cursor-pointer rounded-sm border border-black/40 px-3 py-1 text-[12px]"
               :class="selected === 'All' ? 'bg-green-500 text-white' : 'bg-white'"
               x-on:click="selected = 'All'">All</p>
@@ -15,7 +16,7 @@
             <p class="cursor-pointer rounded-sm border border-black/40 px-3 py-1 text-[12px]"
               :class="selected === 'Hidden' ? 'bg-gray-500 text-white' : 'bg-white'"
               x-on:click="selected = 'Hidden'">Hidden</p>
-          </div>
+          </div> --}}
           @if (session('showSuccess'))
             <div class="mt-4 rounded-sm bg-green-500 px-3 py-2 text-sm text-white">
               Review has been shown!

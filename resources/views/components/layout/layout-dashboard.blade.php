@@ -134,7 +134,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('room.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-bed m-auto text-lg"></i>
@@ -205,7 +205,7 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a href="/"
+                  <a href="{{ route('room.index') }}"
                     class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-bed m-auto text-lg"></i>
