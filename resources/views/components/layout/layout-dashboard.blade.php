@@ -97,7 +97,7 @@
             x-transition:leave-end="opacity-0 -translate-x-20">
             <div>
               <div class="mt-4">
-                <a href="{{ route('landing-page') }}">
+                <a href="{{ route('dashboard') }}">
                   <img src="{{ asset('images/logo/logo.svg') }}"
                     alt=""
                     class="mx-auto w-16" />
@@ -106,7 +106,12 @@
               <div class="mt-4 px-2">
                 <div>
                   <a href="/"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('dashboard') && !window.location.href
+                        .includes('dashboard/room') && !window.location.href.includes('dashboard/room-type') && !
+                        window.location.href.includes('dashboard/review') && !window.location.href.includes(
+                            'dashboard/reservation') && !window.location.href.includes('dashboard/user') ?
+                        'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-house m-auto text-lg"></i>
                     </span>
@@ -135,7 +140,8 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('room.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('room') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-bed m-auto text-lg"></i>
                     </span>
@@ -144,7 +150,8 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('reservation.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('reservation') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-receipt m-auto text-lg"></i>
                     </span>
@@ -153,7 +160,8 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('review.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('review') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-face-smile m-auto text-lg"></i>
                     </span>
@@ -177,7 +185,12 @@
               <div class="mt-4 px-2">
                 <div>
                   <a href="{{ route('dashboard') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('dashboard') && !window.location.href
+                        .includes('dashboard/room') && !window.location.href.includes('dashboard/room-type') && !
+                        window.location.href.includes('dashboard/review') && !window.location.href.includes(
+                            'dashboard/reservation') && !window.location.href.includes('dashboard/user') ?
+                        'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-house m-auto text-lg"></i>
                     </span>
@@ -206,7 +219,9 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('room.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('room') && !window.location.href.includes('/room-type') ?
+                        'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-bed m-auto text-lg"></i>
                     </span>
@@ -215,7 +230,8 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('reservation.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('reservation') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-receipt m-auto text-lg"></i>
                     </span>
@@ -224,7 +240,8 @@
                 </div>
                 <div class="mt-2">
                   <a href="{{ route('review.index') }}"
-                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white">
+                    class="hover:bg-sky-950 flex w-full items-center gap-x-2 rounded-sm px-4 py-2 transition hover:text-white"
+                    :class="window.location.href.includes('review') ? 'bg-sky-500 text-white' : 'text-black'">
                     <span class="flex h-6 w-6">
                       <i class="fa-solid fa-face-smile m-auto text-lg"></i>
                     </span>

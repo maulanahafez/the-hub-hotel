@@ -10,6 +10,11 @@
             <span class="text-sm">Add</span>
           </a>
         </div>
+        @if (session('successStore'))
+          <div class="mt-4 mb-4 rounded-sm bg-green-500 py-2 px-3 text-sm text-white">
+            {{ session('successStore') }}
+          </div>
+        @endif
         <div class="mt-4 overflow-x-auto">
           <table class="w-full min-w-max overflow-x-auto"
             id="roomType">

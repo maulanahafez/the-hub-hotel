@@ -73,7 +73,7 @@ class RoomTypeController extends Controller
             'price_per_day' => $request->price_per_day,
         ]);
 
-        return redirect()->route('room-type.index');
+        return redirect()->route('room-type.index')->with('successStore', 'Room Type has been added successfully!');
     }
 
     public function update(Request $request, RoomType $roomType){
@@ -88,6 +88,6 @@ class RoomTypeController extends Controller
         ]);
         $newRoomType = $roomType->update($request->all());
 
-        return redirect()->route('room-type.show', ['roomType' => $roomType->slug]);
+        return redirect()->route('room-type.show', ['roomType' => $roomType->slug])->with('successUpdate', 'Room Type has been updated successfully!');
     }
 }
