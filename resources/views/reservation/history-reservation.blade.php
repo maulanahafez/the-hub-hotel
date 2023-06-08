@@ -25,17 +25,19 @@
         <div class="mt-4">
           @if (session('checkedIn'))
             <p class="rounded-sm bg-green-500 px-3 py-2 text-[12px] text-sm text-white">
-              Reservation status changed to Checked In successfully
+              Reservation status changed to Checked In successfully!
             </p>
           @endif
           @if (session('checkedOut'))
             <p class="rounded-sm bg-green-500 px-3 py-2 text-[12px] text-sm text-white">
-              Reservation status changed to Checked Out successfully
+              Reservation status changed to Checked Out successfully!
             </p>
           @endif
-
-          {{-- @dump(Auth::user())
-          @dump(Auth::user()->role) --}}
+          @if (session('successReservation'))
+            <p class="rounded-sm bg-green-500 px-3 py-2 text-[12px] text-sm text-white">
+              Reservation has been made!
+            </p>
+          @endif
         </div>
         <div class="mt-4">
           @foreach ($reservations as $reservation)

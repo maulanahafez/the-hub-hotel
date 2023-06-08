@@ -6,7 +6,7 @@
     <div class="shadow-dark-custom mt-4 rounded-md bg-white px-5 py-4">
       <div x-data="{ selected: 'All' }">
         <div class="overflow-x-auto">
-          <div class="mt-4 flex flex-wrap justify-end gap-x-2 gap-y-2">
+          {{-- <div class="mt-4 flex flex-wrap justify-end gap-x-2 gap-y-2">
             <p class="cursor-pointer rounded-sm border border-black/40 px-3 py-1 text-[12px]"
               :class="selected === 'All' ? 'bg-yellow-500 text-white' : 'bg-white'"
               x-on:click="selected = 'All'">All</p>
@@ -19,8 +19,9 @@
             <p class="cursor-pointer rounded-sm border border-black/40 px-3 py-1 text-[12px]"
               :class="selected === 'Checked Out' ? 'bg-blue-500 text-white' : 'bg-white'"
               x-on:click="selected = 'Checked Out'">Checked Out</p>
-          </div>
-          <table class="mt-6 w-full min-w-max overflow-x-auto">
+          </div> --}}
+          <table class="mt-6 w-full min-w-max overflow-x-auto"
+            id="reservation">
             <thead class="font-poppins font-semibold">
               <tr>
                 <td class="px-2"></td>
@@ -61,6 +62,11 @@
               @endforeach
             </tbody>
           </table>
+          <script>
+            $(document).ready(function() {
+              $('#reservation').DataTable();
+            });
+          </script>
         </div>
       </div>
     </div>
