@@ -4,6 +4,7 @@
       <h1 class="font-poppins text-2xl font-semibold">Rooms</h1>
       <div class="mt-4 rounded-md bg-white px-5 py-6 shadow-dark-custom">
         <div x-data="{available: true, occupied: true}">
+          
           <div
             class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2"
           >
@@ -38,6 +39,11 @@
               </span>
             </div>
           </div>
+          @if (session('successDelete'))
+            <div>
+              <p class="mt-4 px-3 py-2 bg-green-500 rounded-sm text-white">Room has been deleted successfully!</p>
+            </div>
+          @endif
           <div class="mt-4 overflow-x-auto">
             <table class="w-full min-w-max overflow-x-auto">
               <thead class="font-poppins font-semibold">

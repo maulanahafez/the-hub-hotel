@@ -79,6 +79,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/create', [RoomController::class,'create'])->name('room.create');
         Route::post('/store', [RoomController::class,'store'])->name('room.store');
         Route::get('/{room:id}', [RoomController::class, 'edit'])->name('room.edit');
+        Route::post('/{room:id}/destroy', [RoomController::class, 'destroy'])->name('room.destroy');
         Route::post('/{room:id}/update',[RoomController::class, 'update'])->name('room.update');
     });
     

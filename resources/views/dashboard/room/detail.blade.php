@@ -41,31 +41,33 @@
                 </p>
                 <div
                   class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm"
-                  x-data="{type: ''}"
+                  x-data="{type: '{{$room->roomType->type}}'}"
                   x-init="type = form.room_type"
                 >
-                  <div>
-                    <input
-                      name="room_type"
-                      type="radio"
-                      id="Deluxe Room"
-                      value="Deluxe Room"
-                      x-model="type"
-                      class="hidden"
-                    />
-                    <label
-                      class="flex cursor-pointer items-center gap-x-2 rounded-sm border-2 px-2 py-1"
-                      for="Deluxe Room"
-                      :class="type === 'Deluxe Room' ? 'border-blue-500' : 'border-transparent'"
-                    >
-                      <span
-                        class="h-2 w-2 rounded-full border border-black/20 ring ring-black/20 ring-offset-2"
-                        :class="type === 'Deluxe Room' ? 'bg-blue-500' : 'bg-white'"
-                      ></span>
-                      Deluxe Room
-                    </label>
-                  </div>
-                  <div>
+                @foreach ($roomTypes as $roomType)
+                <div>
+                  <input
+                    name="room_type"
+                    type="radio"
+                    id="{{$roomType->type}}"
+                    value="{{$roomType->type}}"
+                    x-model="form.room_type"
+                    class="hidden"
+                  />
+                  <label
+                    class="flex cursor-pointer items-center gap-x-2 rounded-sm border-2 px-2 py-1"
+                    for="{{$roomType->type}}"
+                    :class="type === '{{$roomType->type}}' ? 'border-blue-500' : 'border-transparent'"
+                  >
+                    <span
+                      class="h-2 w-2 rounded-full border border-black/20 ring ring-black/20 ring-offset-2"
+                      :class="type === '{{$roomType->type}}' ? 'bg-blue-500' : 'bg-white'"
+                    ></span>
+                    {{$roomType->type}}
+                  </label>
+                </div>
+                @endforeach
+                  {{-- <div>
                     <input
                       name="room_type"
                       type="radio"
@@ -106,7 +108,7 @@
                       ></span>
                       Family Room
                     </label>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
               <div>
@@ -119,7 +121,7 @@
                 <input
                   type="text"
                   name="room_code"
-                  id="room-code"
+                  id="room_code"
                   :value="form.room_code"
                   x-model="form.room_code"
                   placeholder="Room Code"
@@ -155,6 +157,14 @@
               </template>
             </div>
           </form>
+          <form action="{{route('room.destroy', ['room' => $room->id])}}" method="post">
+            @csrf
+            <button type="submit"
+            class="inline-block cursor-pointer rounded-sm bg-red-500 px-4 py-1 text-white" onclick="confirm('Are you sure want to delete this room?')"
+            >
+              Delete
+            </button >
+          </form>
         </div>
         <script>
           document.addEventListener("alpine:init", () => {
@@ -162,7 +172,7 @@
               edit: false,
               form: {
                 id: {{$room->id}},
-                room_type: "{{$room->type}}",
+                room_type: "",
                 room_code: "{{$room->room_code}}",
               },
             }));

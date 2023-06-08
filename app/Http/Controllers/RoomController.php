@@ -42,8 +42,17 @@ class RoomController extends Controller
     }
 
     public function edit(Room $room){
-        $data=['room'=>$room];
+        $data=[
+            'room'=>$room,
+            'roomTypes'=> RoomType::all(),
+        ];
         return view('dashboard.room.detail',$data);
+    }
+
+    public function destroy(Room $room){
+        $room->delete();
+        return redirect()->route('room.index')->with('successDelete', 'Room has been deleted successfully');
+        dd($room);
     }
         
 }
