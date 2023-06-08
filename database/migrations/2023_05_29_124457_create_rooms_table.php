@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('room_type_id');
             $table->string('room_code');
-            $table->string('status');
+            $table->string('status')->default('Available');
             $table->timestamps();
         });
     }

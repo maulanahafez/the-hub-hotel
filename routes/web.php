@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\RoomTypeImageController;
@@ -71,4 +72,14 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/',[ReviewController::class,'index'])->name('review.index');
         
     });
+
+    // Room
+    Route::prefix('/room')->group(function(){
+        Route::get('/',[RoomController::class,'index'])->name('room.index');
+        Route::get('/create', [RoomController::class,'create'])->name('room.create');
+        Route::post('/store', [RoomController::class,'store'])->name('room.store');
+        Route::get('/{room:id}', [RoomController::class, 'edit'])->name('room.edit');
+        Route::post('/{room:id}/update',[RoomController::class, 'update'])->name('room.update');
+    });
+    
 });
