@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_type_id');
+            $table->foreignId('room_type_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('room_code')->unique();
             $table->string('status')->default('Available');
             $table->timestamps();
+
+            // $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

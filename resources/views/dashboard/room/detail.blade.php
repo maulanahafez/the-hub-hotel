@@ -50,7 +50,7 @@
                     :class="form.room_type === '{{ $roomType->type }}' ? 'border-blue-500' : 'border-transparent'">
                     <span class="h-2 w-2 rounded-full border border-black/20 ring ring-black/20 ring-offset-2"
                       :class="form.room_type === '{{ $roomType->type }}' ? 'bg-blue-500' : 'bg-white'"></span>
-                    {{ $roomType->type }}
+                    {{ ucwords($roomType->type) }}
                   </label>
                 </div>
               @endforeach
@@ -108,7 +108,7 @@
               id="room_code"
               x-model="form.room_code"
               placeholder="Room Code"
-              class="mt-1 w-full min-w-fit max-w-full rounded-sm border border-black/20 px-4 py-1 focus:outline-sky-500" />
+              class="mt-1 w-full min-w-fit max-w-full rounded-sm border border-black/20 px-4 py-1 uppercase focus:outline-sky-500" />
             <p class="mt-0.5 text-[12px] text-black/60">
               Unique code for this room
             </p>
