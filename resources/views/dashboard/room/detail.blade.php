@@ -7,12 +7,18 @@
           <h1 class="border-b border-black/20 pb-1 font-poppins text-3xl">
             Room Details
           </h1>
+          @if (session('successUpdate'))
+            <div class="px-3 py-2 text-sm text-white bg-green-500 rounded-sm">
+              <p>{{session('successUpdate')}}</p>
+            </div>
+          @endif
           <form
-            method="get"
-            action=""
+            method="post"
+            action="{{route('room.update', ['room' => $room->id])}}"
             class="max-w-lg"
             x-data="form"
           >
+            @csrf
             <div
               class="grid grid-cols-1 gap-y-4"
               :class="edit ? null : 'pointer-events-none'"
@@ -57,11 +63,11 @@
                   <label
                     class="flex cursor-pointer items-center gap-x-2 rounded-sm border-2 px-2 py-1"
                     for="{{$roomType->type}}"
-                    :class="type === '{{$roomType->type}}' ? 'border-blue-500' : 'border-transparent'"
+                    :class="form.room_type === '{{$roomType->type}}' ? 'border-blue-500' : 'border-transparent'"
                   >
                     <span
                       class="h-2 w-2 rounded-full border border-black/20 ring ring-black/20 ring-offset-2"
-                      :class="type === '{{$roomType->type}}' ? 'bg-blue-500' : 'bg-white'"
+                      :class="form.room_type === '{{$roomType->type}}' ? 'bg-blue-500' : 'bg-white'"
                     ></span>
                     {{$roomType->type}}
                   </label>
@@ -122,7 +128,6 @@
                   type="text"
                   name="room_code"
                   id="room_code"
-                  :value="form.room_code"
                   x-model="form.room_code"
                   placeholder="Room Code"
                   class="mt-1 w-full min-w-fit max-w-full rounded-sm border border-black/20 px-4 py-1 focus:outline-sky-500"
@@ -172,7 +177,7 @@
               edit: false,
               form: {
                 id: {{$room->id}},
-                room_type: "",
+                room_type: "{{$room->roomType->type}}",
                 room_code: "{{$room->room_code}}",
               },
             }));
