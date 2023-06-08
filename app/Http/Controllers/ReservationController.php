@@ -35,8 +35,10 @@ class ReservationController extends Controller
         // dd($roomType);
     }
 
-    public function store(Request $request, RoomType $roomType){
-        $room = Room::where('room_code', $request->room_code)->first();
+    public function store(Request $request, RoomType $roomType, Room $room){
+        $room->update([
+            'status' => "Occupied",
+        ]);
 
         $newReservation = Reservation::create([
             'room_id' => $room->id,
@@ -48,7 +50,7 @@ class ReservationController extends Controller
             'payment_mtd' => $request->payment_mtd,
         ]);
 
-        return redirect()->route('home.my-reservation');
+        return redirect()->route('home.my-reservation')->with('successReservation', 'Reservation has been made!');
     }
 
     public function checkIn(Request $request, Reservation $reservation){

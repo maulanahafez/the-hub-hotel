@@ -11,7 +11,8 @@
           </a>
         </div>
         <div class="mt-4 overflow-x-auto">
-          <table class="w-full min-w-max overflow-x-auto">
+          <table class="w-full min-w-max overflow-x-auto"
+            id="roomType">
             <thead class="font-poppins font-semibold">
               <tr>
                 <!-- <td class="px-2"></td> -->
@@ -51,6 +52,11 @@
               @endforeach
             </tbody>
           </table>
+          <script>
+            $(document).ready(function() {
+              $('#roomType').DataTable();
+            });
+          </script>
         </div>
       </div>
     </div>

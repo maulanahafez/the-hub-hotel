@@ -18,7 +18,7 @@
         @endif
         <div class="mt-4 overflow-x-auto"
           x-data="{ selected: 'All' }">
-          <div class="flex flex-wrap justify-end gap-x-2 gap-y-2">
+          {{-- <div class="mb-4 flex flex-wrap justify-end gap-x-2 gap-y-2">
             <p class="cursor-pointer rounded-sm border border-black/40 px-3 py-1 text-[12px]"
               :class="selected === 'All' ? 'bg-green-500 text-white' : 'bg-white'"
               x-on:click="selected = 'All'">All</p>
@@ -31,8 +31,9 @@
             <p class="cursor-pointer rounded-sm border border-black/40 px-3 py-1 text-[12px]"
               :class="selected === 'User' ? 'bg-gray-500 text-white' : 'bg-white'"
               x-on:click="selected = 'User'">User</p>
-          </div>
-          <table class="mt-4 w-full min-w-max overflow-x-auto">
+          </div> --}}
+          <table class="mt-4 w-full min-w-max overflow-x-auto"
+            id="user-table">
             <thead class="font-poppins font-semibold">
               <tr>
                 <td class="px-2"></td>
@@ -45,7 +46,7 @@
             <tbody>
               @foreach ($users as $user)
                 <tr class="border-y border-black/20 text-sm"
-                  x-show="selected == 'All' ? 'All' : selected == '{{ ucfirst($user->role) }}'">
+                  x-show="selected == 'All' ? selected == 'All' : selected == '{{ ucfirst($user->role) }}'">
                   <td class="px-2 py-3">{{ $number++ }}</td>
                   <td class="px-2">{{ $user->name }}</td>
                   <td class="px-2">{{ $user->email }}</td>
@@ -71,6 +72,11 @@
               @endforeach
             </tbody>
           </table>
+          <script>
+            $(document).ready(function() {
+              $('#user-table').DataTable();
+            });
+          </script>
         </div>
       </div>
     </div>
