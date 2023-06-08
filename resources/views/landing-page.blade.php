@@ -63,20 +63,22 @@
                 </div>
               @endif
             @endauth
-            <div>
-              <a href="{{ route('home.room-type') }}"
-                class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
-                <i class="fa-solid fa-bed"></i>
-                <span>Rooms</span>
-              </a>
-            </div>
-            <div>
-              <a href="{{ route('home.review') }}"
-                class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
-                <i class="fa-solid fa-star"></i>
-                <span>Reviews</span>
-              </a>
-            </div>
+            @if (Auth::guest() || !(Auth::user()->role == 'receptionist'))
+              <div>
+                <a href="{{ route('home.room-type') }}"
+                  class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
+                  <i class="fa-solid fa-bed"></i>
+                  <span>Rooms</span>
+                </a>
+              </div>
+              <div>
+                <a href="{{ route('home.review') }}"
+                  class="flex items-center gap-x-2 p-2 transition hover:text-sky-500">
+                  <i class="fa-solid fa-star"></i>
+                  <span>Reviews</span>
+                </a>
+              </div>
+            @endif
             @auth
               <div>
                 <a href="{{ route('home.my-reservation') }}"
@@ -155,24 +157,26 @@
                   </div>
                 @endif
               @endauth
-              <div>
-                <a href="{{ route('home.room-type') }}"
-                  class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
-                  <div class="flex h-8 w-8">
-                    <i class="fa-solid fa-bed m-auto text-lg"></i>
-                  </div>
-                  <span>Rooms</span>
-                </a>
-              </div>
-              <div>
-                <a href="{{ route('home.review') }}"
-                  class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
-                  <div class="flex h-8 w-8">
-                    <i class="fa-solid fa-star m-auto text-lg"></i>
-                  </div>
-                  <span>Reviews</span>
-                </a>
-              </div>
+              @if (Auth::guest() || !(Auth::user()->role == 'receptionist'))
+                <div>
+                  <a href="{{ route('home.room-type') }}"
+                    class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
+                    <div class="flex h-8 w-8">
+                      <i class="fa-solid fa-bed m-auto text-lg"></i>
+                    </div>
+                    <span>Rooms</span>
+                  </a>
+                </div>
+                <div>
+                  <a href="{{ route('home.review') }}"
+                    class="flex items-center gap-x-2 rounded-lg px-2 py-1 transition hover:bg-sky-500 hover:text-white">
+                    <div class="flex h-8 w-8">
+                      <i class="fa-solid fa-star m-auto text-lg"></i>
+                    </div>
+                    <span>Reviews</span>
+                  </a>
+                </div>
+              @endif
               @auth
                 <div>
                   <a href="{{ route('home.my-reservation') }}"
